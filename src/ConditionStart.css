@@ -1,0 +1,45 @@
+.condition-start {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+}
+
+.condition-image {
+  max-width: 40%;
+  height: auto;
+  
+}
+
+ol {
+  text-align: left;
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 1rem;
+}
+
+.start-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background-color: #f26621;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #005c39;
+}
+
+.note {
+  margin-top: 1rem;
+  color: gray;
+}
+

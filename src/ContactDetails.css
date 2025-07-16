@@ -1,0 +1,84 @@
+.form-wrapper {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.form-progress-bar {
+  height: 6px;
+  background-color: #007f4f;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.phone-group {
+  display: flex;
+  align-items: center;
+}
+
+.phone-group .flag {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #007f4f;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.continue-btn.disabled {
+  background: #e2f0ea;
+  color: #a2a2a2;
+  cursor: not-allowed;
+}
+
+.legal-text {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #444;
+  margin-top: 1rem;
+}
+
+.legal-text a {
+  color: #007f4f;
+  text-decoration: underline;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #007f4f;
+  cursor: pointer;
+}

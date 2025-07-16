@@ -1,0 +1,73 @@
+.app-header {
+  position: sticky;     /* Make it stick */
+  top: 0;               /* Stick to top of page */
+  z-index: 1000;        /* Ensure it's above other elements */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  gap: 1rem;
+}
+
+.logo {
+  height: 70px;
+  object-fit: contain;
+}
+
+.logo.healthya {
+  height: 20px;
+}
+
+.powered-by {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 10px;
+  color: #555;
+}
+
+.header-right {
+  margin-left: auto;
+}
+
+.logo.nhs {
+  height: 60px;
+}
+
+/* Responsive: Stack elements vertically on narrow screens */
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header-right {
+    align-self: flex-end;
+  }
+
+  .logo.nhs {
+    height: 35px;
+  }
+
+  .logo {
+    height: 35px;
+  }
+}
