@@ -15,7 +15,7 @@ function App() {
 
   return (
     <FormDataProvider>
-      <Router basename={isLocalhost ? '/' : '/'}>
+      <Router basename="/">
         <div className="App">
           <Header />
 
