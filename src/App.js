@@ -10,9 +10,12 @@ import ContactDetails from './ContactDetails';
 import { FormDataProvider } from './FormDataContext';
 
 function App() {
+
+ const isLocalhost = window.location.hostname === 'localhost';
+
   return (
     <FormDataProvider>
-      <Router basename="/pharmacy-first-tool">
+      <Router basename={isLocalhost ? '/' : '/'}>
         <div className="App">
           <Header />
 
