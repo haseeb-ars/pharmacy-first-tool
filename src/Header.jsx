@@ -8,7 +8,9 @@ const Header = () => {
         <img src="/Pharmacistfirst.png" alt="Pharmacist First" className="logo careplus" />
         <span className="powered-by">
           <small>POWERED BY </small>
-          <img src='/Visualab.png' alt='Visualab ' className='logovisualab'></img>
+         <a href="https://www.visualab.uk/" target="_blank" rel="noopener noreferrer">
+  <img src="/Visualab.png" alt="Visualab" className="logovisualab" />
+</a>
         </span>
       </div>
       <div className="header-right">
