@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/haseeb-ars/pharmacy-first-tool.git/static/css/main.16bfac17.css",
-    "main.js": "/haseeb-ars/pharmacy-first-tool.git/static/js/main.81202ac4.js",
-    "static/js/453.484c7588.chunk.js": "/haseeb-ars/pharmacy-first-tool.git/static/js/453.484c7588.chunk.js",
-    "index.html": "/haseeb-ars/pharmacy-first-tool.git/index.html",
-    "main.16bfac17.css.map": "/haseeb-ars/pharmacy-first-tool.git/static/css/main.16bfac17.css.map",
-    "main.81202ac4.js.map": "/haseeb-ars/pharmacy-first-tool.git/static/js/main.81202ac4.js.map",
-    "453.484c7588.chunk.js.map": "/haseeb-ars/pharmacy-first-tool.git/static/js/453.484c7588.chunk.js.map"
+    "main.css": "/pharmacy-first-tool/static/css/main.16bfac17.css",
+    "main.js": "/pharmacy-first-tool/static/js/main.a17c2659.js",
+    "static/js/453.484c7588.chunk.js": "/pharmacy-first-tool/static/js/453.484c7588.chunk.js",
+    "index.html": "/pharmacy-first-tool/index.html",
+    "main.16bfac17.css.map": "/pharmacy-first-tool/static/css/main.16bfac17.css.map",
+    "main.a17c2659.js.map": "/pharmacy-first-tool/static/js/main.a17c2659.js.map",
+    "453.484c7588.chunk.js.map": "/pharmacy-first-tool/static/js/453.484c7588.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.16bfac17.css",
-    "static/js/main.81202ac4.js"
+    "static/js/main.a17c2659.js"
   ]
 }
