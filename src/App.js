@@ -7,9 +7,12 @@ import ConditionStart from './ConditionStart';
 import Header from './Header';
 import UserDetails from './UserDetails';
 import ContactDetails from './ContactDetails';
+import { FormDataProvider } from './FormDataContext';
 
 function App() {
   return (
+
+    <FormDataProvider>
     <Router>
       <div className="App">
 
@@ -33,6 +36,8 @@ function App() {
 </Routes>
       </div>
     </Router>
+
+    </FormDataProvider>
   );
 }
 

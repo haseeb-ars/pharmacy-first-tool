@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+// BookingCalendar.jsx
+import React, { useContext, useEffect, useRef } from 'react';
+import { FormDataContext } from './FormDataContext';
+import { sendFormData } from './sendFormData';
 
 const BookingCalendar = () => {
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState('');
+  const { formData } = useContext(FormDataContext);
+  const hasSent = useRef(false); // ✅ prevent multiple sends
 
-  const handleSubmit = () => {
-    alert(`Booked on ${date.toDateString()} at ${time}`);
-  };
+  useEffect(() => {
+    if (!hasSent.current && formData?.userDetails?.firstName && formData?.contactDetails?.email) {
+      sendFormData(formData);
+      hasSent.current = true; // ✅ block further calls
+    }
+  }, [formData]);
 
   return (
-    <div>
-      <h2>Select Appointment</h2>
-      <Calendar onChange={setDate} value={date} />
-      <select onChange={(e) => setTime(e.target.value)} value={time}>
-        <option value="">Select a time</option>
-        <option value="10:00">10:00 AM</option>
-        <option value="11:00">11:00 AM</option>
-        {/* Add more times as needed */}
-      </select>
-      <button onClick={handleSubmit} disabled={!time}>
-        Book Appointment
-      </button>
-    </div>
+    <iframe
+      src="https://cal.com/pharmacistfirst/pharmacy-first"
+      style={{
+        width: '100%',
+        height: '100vh',
+        border: 'none',
+      }}
+      title="Booking Calendar"
+    />
   );
 };
 

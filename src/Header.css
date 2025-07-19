@@ -17,7 +17,11 @@
 }
 
 .header-left {
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  position: relative;
 }
 
 .logo {
@@ -25,16 +29,19 @@
   object-fit: contain;
 }
 
-.logo.healthya {
+.logovisualab {
   height: 20px;
+  object-fit: contain;
 }
 
 .powered-by {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;         /* Make it inline */
+  align-items: center;
   font-size: 10px;
   color: #555;
+  align-self: flex-end;        /* Align to the right under logo */
+  gap: 0.25rem;
 }
 
 .header-right {
@@ -48,9 +55,9 @@
 /* Responsive: Stack elements vertically on narrow screens */
 @media (max-width: 600px) {
   .app-header {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
   }
 
   .header-left {
@@ -59,15 +66,15 @@
     gap: 0.5rem;
   }
 
-  .header-right {
-    align-self: flex-end;
+  .logo {
+    height: 40px;
   }
 
   .logo.nhs {
-    height: 35px;
+    height: 40px;
   }
 
-  .logo {
-    height: 35px;
+  .logovisualab {
+    height: 14px; /* Make Visualab logo smaller */
   }
 }

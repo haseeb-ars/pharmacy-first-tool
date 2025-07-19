@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './UserDetails.css';
 import eligibilityRules from './eligibilityRules';
-
+import { FormDataContext } from './FormDataContext';
 
 const UserDetails = () => {
-  const { id } = useParams(); // condition ID
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { setFormData } = useContext(FormDataContext);
 
-  const [formData, setFormData] = useState({
+  const [localData, setLocalData] = useState({
     firstName: '',
     lastName: '',
     dobDay: '',
@@ -18,44 +19,53 @@ const UserDetails = () => {
     postcode: ''
   });
 
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+  const [postcodeError, setPostcodeError] = useState('');
+
+  const validateUKPostcode = (postcode) => {
+    const regex = /^([A-Z]{1,2}\d{1,2}[A-Z]?) ?\d[A-Z]{2}$/i;
+    return regex.test(postcode.trim());
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLocalData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'postcode') {
+      if (!validateUKPostcode(value)) {
+        setPostcodeError('Please enter a valid UK postcode.');
+      } else {
+        setPostcodeError('');
+      }
+    }
+  };
+
+  const isComplete = Object.values(localData).every(val => val.trim() !== '') && postcodeError === '';
+
   const handleContinue = () => {
-  const rules = eligibilityRules[id]; // condition rules (e.g., for UTI)
+    const rules = eligibilityRules[id];
+    const birthDate = new Date(`${localData.dobYear}-${localData.dobMonth}-${localData.dobDay}`);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
 
-  // Calculate age from DOB
-  const birthDate = new Date(`${formData.dobYear}-${formData.dobMonth}-${formData.dobDay}`);
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
+    if (rules?.gender && localData.sex !== rules.gender) return navigate('/ineligible');
+    if (rules?.minAge && age < rules.minAge) return navigate('/ineligible');
+    if (rules?.maxAge && age > rules.maxAge) return navigate('/ineligible');
 
-  // Gender check
-  if (rules?.gender && formData.sex !== rules.gender) {
-    return navigate('/ineligible');
-  }
+    setFormData(prev => ({
+      ...prev,
+      condition: id,
+      userDetails: {
+        ...localData,
+        age
+      }
+    }));
 
-  // Min age check
-  if (rules?.minAge && age < rules.minAge) {
-    return navigate('/ineligible');
-  }
-
-  // Max age check
-  if (rules?.maxAge && age > rules.maxAge) {
-    return navigate('/ineligible');
-  }
-
-  // All checks passed
- navigate(`/condition/${id}/contact`);
-};
-
+    navigate(`/condition/${id}/contact`);
+  };
 
   return (
     <div className="form-wrapper">
@@ -83,25 +93,36 @@ const UserDetails = () => {
       <label>Sex assigned at birth</label>
       <div className="gender-group">
         <button
-          className={formData.sex === 'female' ? 'selected' : ''}
-          onClick={() => setFormData({ ...formData, sex: 'female' })}
+          className={localData.sex === 'female' ? 'selected' : ''}
+          onClick={() => setLocalData({ ...localData, sex: 'female' })}
         >
           Female
         </button>
         <button
-          className={formData.sex === 'male' ? 'selected' : ''}
-          onClick={() => setFormData({ ...formData, sex: 'male' })}
+          className={localData.sex === 'male' ? 'selected' : ''}
+          onClick={() => setLocalData({ ...localData, sex: 'male' })}
         >
           Male
         </button>
       </div>
 
       <label>Postcode</label>
-      <input name="postcode" placeholder="Postcode" onChange={handleChange} />
+      <input
+        name="postcode"
+        placeholder="Postcode"
+        onChange={handleChange}
+        value={localData.postcode}
+      />
+      {postcodeError && <p className="error-text">{postcodeError}</p>}
 
-      <button className="continue-btn" onClick={handleContinue}>
+      <button
+        className={`continue-btn ${!isComplete ? 'disabled' : ''}`}
+        onClick={handleContinue}
+        disabled={!isComplete}
+      >
         Continue
       </button>
+
       <p className="back-link" onClick={() => navigate(-1)}>Back</p>
     </div>
   );

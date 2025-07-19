@@ -7,8 +7,8 @@ const Header = () => {
       <div className="header-left">
         <img src="/Pharmacistfirst.png" alt="Pharmacist First" className="logo careplus" />
         <span className="powered-by">
-          <small>POWERED BY VISUALAB</small>
-          
+          <small>POWERED BY </small>
+          <img src='/Visualab.png' alt='Visualab ' className='logovisualab'></img>
         </span>
       </div>
       <div className="header-right">

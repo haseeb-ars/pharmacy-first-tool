@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './ContactDetails.css';
+import { FormDataContext } from './FormDataContext'; // ✅ import context
 
 const ContactDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { setFormData } = useContext(FormDataContext); // ✅ use context
 
   const [form, setForm] = useState({
     email: '',
@@ -18,7 +20,15 @@ const ContactDetails = () => {
   };
 
   const handleContinue = () => {
-    // Save to state/context later if needed
+    // ✅ Save to shared context
+    setFormData(prev => ({
+      ...prev,
+      contactDetails: {
+        email: form.email,
+        phone: form.phone
+      }
+    }));
+
     navigate(`/condition/${id}/questions`);
   };
 
@@ -26,7 +36,7 @@ const ContactDetails = () => {
     <div className="form-wrapper">
       <div className="form-progress">
         <div className="form-progress-bar" style={{ width: '33%' }} />
-        <p><strong>Step 1 of 3</strong> <span>Your Details</span></p>
+        <p><strong>Step 2 of 3</strong> <span>Contact Details</span></p>
       </div>
 
       <h2>Thanks!<br />Please add your email and phone number</h2>
@@ -45,7 +55,7 @@ const ContactDetails = () => {
         <span className="flag">🇬🇧</span>
         <input
           name="phone"
-          placeholder="Enter your Phone number"
+          placeholder="Enter your phone number"
           value={form.phone}
           onChange={handleChange}
           type="tel"
@@ -72,4 +82,3 @@ const ContactDetails = () => {
 };
 
 export default ContactDetails;
-
