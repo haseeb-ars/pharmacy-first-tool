@@ -20,15 +20,31 @@ const UserDetails = () => {
   });
 
   const [postcodeError, setPostcodeError] = useState('');
+  const [dobError, setDobError] = useState('');
 
   const validateUKPostcode = (postcode) => {
     const regex = /^([A-Z]{1,2}\d{1,2}[A-Z]?) ?\d[A-Z]{2}$/i;
     return regex.test(postcode.trim());
   };
 
+  const validateDOB = ({ dobDay, dobMonth, dobYear }) => {
+    if (!/^\d+$/.test(dobDay) || !/^\d+$/.test(dobMonth) || !/^\d{4}$/.test(dobYear)) {
+      return false;
+    }
+    const date = new Date(`${dobYear}-${dobMonth}-${dobDay}`);
+    return (
+      date instanceof Date &&
+      !isNaN(date) &&
+      date.getDate() === parseInt(dobDay) &&
+      date.getMonth() + 1 === parseInt(dobMonth) &&
+      date.getFullYear() === parseInt(dobYear)
+    );
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setLocalData(prev => ({ ...prev, [name]: value }));
+    const updatedData = { ...localData, [name]: value };
+    setLocalData(updatedData);
 
     if (name === 'postcode') {
       if (!validateUKPostcode(value)) {
@@ -37,9 +53,20 @@ const UserDetails = () => {
         setPostcodeError('');
       }
     }
+
+    if (['dobDay', 'dobMonth', 'dobYear'].includes(name)) {
+      if (!validateDOB(updatedData)) {
+        setDobError('Please enter a valid Date of Birth.');
+      } else {
+        setDobError('');
+      }
+    }
   };
 
-  const isComplete = Object.values(localData).every(val => val.trim() !== '') && postcodeError === '';
+  const isComplete =
+    Object.values(localData).every((val) => val.trim() !== '') &&
+    postcodeError === '' &&
+    dobError === '';
 
   const handleContinue = () => {
     const rules = eligibilityRules[id];
@@ -55,7 +82,7 @@ const UserDetails = () => {
     if (rules?.minAge && age < rules.minAge) return navigate('/ineligible');
     if (rules?.maxAge && age > rules.maxAge) return navigate('/ineligible');
 
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       condition: id,
       userDetails: {
@@ -70,7 +97,7 @@ const UserDetails = () => {
   return (
     <div className="form-wrapper">
       <div className="form-progress">
-        <div className="form-progress-bar" />
+        <div className="form-progress-bar1"  />
         <p><strong>Step 1 of 3</strong> <span>Your Details</span></p>
       </div>
 
@@ -89,6 +116,7 @@ const UserDetails = () => {
         <input name="dobMonth" placeholder="MM" maxLength={2} onChange={handleChange} />
         <input name="dobYear" placeholder="YYYY" maxLength={4} onChange={handleChange} />
       </div>
+      {dobError && <p className="error-text">{dobError}</p>}
 
       <label>Sex assigned at birth</label>
       <div className="gender-group">

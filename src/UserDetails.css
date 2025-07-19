@@ -7,14 +7,15 @@
 }
 
 .form-progress {
-  border-top: 6px solid #007f4f;
+  border-top: 6px solid white;
   margin-bottom: 1rem;
 }
 
-.form-progress-bar {
+.form-progress-bar1 {
   height: 6px;
   width: 33%;
   background-color: #f26621;
+  width: 33%;
 }
 
 h2 {

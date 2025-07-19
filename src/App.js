@@ -9,9 +9,10 @@ import UserDetails from './UserDetails';
 import ContactDetails from './ContactDetails';
 import { FormDataProvider } from './FormDataContext';
 
+
 function App() {
 
- const isLocalhost = window.location.hostname === 'localhost';
+
 
   return (
     <FormDataProvider>

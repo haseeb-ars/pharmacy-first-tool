@@ -45,7 +45,7 @@ const Questionnaire = () => {
 
   return (
     <div className="question-wrapper">
-      <div className="form-progress-bar" style={{ width: '66%' }} />
+      <div className="form-progress-bar" style={{ width: '100%' }} />
       <p className="step">Step 3 of 3 <strong>Consultation</strong></p>
       <h2>{data?.header}</h2>
 
