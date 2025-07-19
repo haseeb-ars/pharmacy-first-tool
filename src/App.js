@@ -11,32 +11,30 @@ import { FormDataProvider } from './FormDataContext';
 
 function App() {
   return (
-
     <FormDataProvider>
-    <Router>
-      <div className="App">
+      <Router basename="/pharmacy-first-tool">
+        <div className="App">
+          <Header />
 
-        <Header/>
-        
-<Routes>
-  {/* Step 1: Welcome */}
-  <Route path="/condition/:id" element={<ConditionStart />} />
+          <Routes>
+            {/* Step 1: Welcome */}
+            <Route path="/condition/:id" element={<ConditionStart />} />
 
-  {/* Step 2: USer details */}
-  <Route path="/condition/:id/details" element={<UserDetails />} />
+            {/* Step 2: User details */}
+            <Route path="/condition/:id/details" element={<UserDetails />} />
 
-  <Route path="/condition/:id/contact" element={<ContactDetails />} />
-  
-  {/* Step 3: Questions */}
-  <Route path="/condition/:id/questions" element={<Questionnaire />} />
+            {/* Step 2.5: Contact details */}
+            <Route path="/condition/:id/contact" element={<ContactDetails />} />
 
-  {/* Other routes */}
-  <Route path="/ineligible" element={<Ineligible />} />
-  <Route path="/booking" element={<BookingCalendar />} />
-</Routes>
-      </div>
-    </Router>
+            {/* Step 3: Questions */}
+            <Route path="/condition/:id/questions" element={<Questionnaire />} />
 
+            {/* Outcomes */}
+            <Route path="/ineligible" element={<Ineligible />} />
+            <Route path="/booking" element={<BookingCalendar />} />
+          </Routes>
+        </div>
+      </Router>
     </FormDataProvider>
   );
 }
