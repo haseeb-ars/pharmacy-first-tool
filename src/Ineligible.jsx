@@ -14,7 +14,7 @@ const Ineligible = () => {
     <div className="ineligible-page">
       <div className="ineligible-card">
         <div className="ineligible-header">
-          <h2>You’ve reached Emergency Action Needed Now</h2>
+          <h2>You are ineligible for this service</h2>
           <p>Here’s what we recommend based on your symptoms.</p>
         </div>
         <div className="ineligible-content">

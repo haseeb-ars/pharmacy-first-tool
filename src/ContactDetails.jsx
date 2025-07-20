@@ -103,7 +103,7 @@ const ContactDetails = () => {
       </button>
 
       <p className="legal-text">
-        Service provided by healthya<br />
+        Service provided by CarePlus Health<br />
         By using the platform you are accepting our<br />
         <a href="Termsofservice.com">Terms of Service</a> and our <a href="privacypolicy.com">Privacy Policy</a>.
       </p>

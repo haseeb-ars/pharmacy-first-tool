@@ -13,7 +13,7 @@ const ConditionStart = () => {
 
   return (
     <div className="condition-start">
-      <img src="/mat.png" alt="Welcome" className="condition-image" />
+      <img src="/welcome3.png" alt="Welcome" className="condition-image" />
       <h2>Welcome to Pharmacist First Consultant</h2>
       <p><strong>To get started, please provide a few details</strong></p>
       <ol>
