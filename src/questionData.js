@@ -269,7 +269,58 @@ const questionData = {
         ]
       }
     ]
+  },
+
+
+
+
+
+  contraception: {
+    header: "Contraception",
+    questions: [
+      {
+        question: "Have you ever used the pill before?",
+        options: [
+          {
+            text: "Yes, I am restarting",
+            eligible: true, // Go directly to booking
+          },
+          {
+            text: "Yes, I am currently taking it",
+            eligible: "followup", // Custom flag to trigger next question
+          },
+          {
+            text: "No, It’s my first time",
+            eligible: true, // Go directly to booking
+          }
+        ]
+      },
+      {
+        question: "Which one did you take?",
+        options: [
+          { text: "Microgynon 30", eligible: true },
+          { text: "Rigevidon", eligible: true },
+          { text: "Yasmin", eligible: true },
+          { text: "Cerelle", eligible: true },
+          { text: "Gedarel", eligible: true },
+          { text: "Femodette", eligible: true },
+          { text: "Cerazette", eligible: true },
+          { text: "Noriday", eligible: true },
+          { text: "Desogestrel", eligible: true },
+          { text: "Other", eligible: true },
+          { text: "Not sure", eligible: true },
+          { text: "First Time User", eligible: true }
+        ]
+      }
+    ]
   }
+
+
+
+
+
+
+  
 };
 
 export default questionData;

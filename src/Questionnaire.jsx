@@ -22,15 +22,35 @@ const Questionnaire = () => {
       {
         question: currentQuestion.question,
         response: option.text,
-        bullets: currentQuestion.bullets || [] // ✅ include bullets if present
-      },
+        bullets: currentQuestion.bullets || []
+      }
     ];
 
     setAnswers(updatedAnswers);
 
-    if (!option.eligible) {
-      navigate('/ineligible', { state: { note: option.ineligibleNote } });
-    } else if (current + 1 < questions.length) {
+    // 🚫 Ineligible
+    if (option.eligible === false) {
+      return navigate('/ineligible', { state: { note: option.ineligibleNote } });
+    }
+
+    // ✅ Special logic for contraception flow
+    if (id === 'contraception' && current === 0) {
+      if (option.eligible === true) {
+        // first or third option → skip second question
+        setFormData(prev => ({
+          ...prev,
+          questionnaire: updatedAnswers
+        }));
+        return navigate('/booking');
+      }
+
+      if (option.eligible === 'followup') {
+        return setCurrent(current + 1); // move to Q2
+      }
+    }
+
+    // ✅ Continue to next Q if exists
+    if (current + 1 < questions.length) {
       setCurrent(current + 1);
     } else {
       setFormData(prev => ({
