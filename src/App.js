@@ -8,6 +8,8 @@ import Header from './Header';
 import UserDetails from './UserDetails';
 import ContactDetails from './ContactDetails';
 import { FormDataProvider } from './FormDataContext';
+import BMICalculator from './BMICalculator';
+import Footer from './Footer';
 
 
 function App() {
@@ -32,11 +34,13 @@ function App() {
 
             {/* Step 3: Questions */}
             <Route path="/condition/:id/questions" element={<Questionnaire />} />
-
+            
+            <Route path="/bmi" element={<BMICalculator />} />
             {/* Outcomes */}
             <Route path="/ineligible" element={<Ineligible />} />
             <Route path="/booking" element={<BookingCalendar />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </FormDataProvider>

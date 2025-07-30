@@ -313,7 +313,52 @@ const questionData = {
         ]
       }
     ]
-  }
+  },
+
+
+
+  weightloss: {
+  header: "Weight Loss Service",
+  questions: [
+    {
+      question: "How old are you?",
+      options: [
+        { text: "Under 18", eligible: true },
+        { text: "18 to 74", eligible: true },
+        { text: "75 to 85", eligible: true },
+        { text: "85 or above", eligible: true }
+      ]
+    },
+    {
+      question: "Have you ever been diagnosed with any of the following?",
+      bullets: [
+        "Liver disease", "Pancreatitis", "Diabetes type 1", "Diabetes type 2", "Pre diabetes",
+        "Diabetic retinopathy/diabetic eye disease", "Heart Failure", "Kidney Problems",
+        "Thyroid cancer or family history of thyroid cancer", "Gallstones", "Weight related surgery",
+        "Fast heart rate (Tachycardia)", "Multiple endocrine neoplasia 2 (MEN2)",
+        "Suicidal thoughts", "Eating disorders", "Cholestasis", "Chronic malabsorption syndrome"
+      ],
+      options: [
+        { text: "Yes", eligible: true },
+        { text: "No", eligible: true }
+      ]
+    },
+    {
+      question: "Do you have any of the following weight-related conditions?",
+      bullets: [
+        "Hypertension (high blood pressure)", "Dyslipidaemia (high cholesterol)",
+        "Cardiovascular disease", "Pre-diabetes", "Knee or hip osteoarthritis",
+        "Obstructive sleep apnoea", "Asthma/COPD", 
+        "Liver disease (NAFLD/NASH) and polycystic ovary syndrome (PCOS)", "Erectile dysfunction"
+      ],
+      options: [
+        { text: "Yes", eligible: true },
+        { text: "No", eligible: true }
+      ]
+    }
+  ]
+}
+
 
 
 

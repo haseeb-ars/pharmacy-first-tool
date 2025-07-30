@@ -26,6 +26,14 @@ ${formData.questionnaire.map((q, i) => {
     : '';
   return `Q${i + 1}: ${q.question}${bullets}\n→ ${q.response}\n`;
 }).join('\n')}
+
+📊 BMI Details:
+${formData.bmi ? `
+Weight: ${formData.bmi.weight} kg
+Height: ${formData.bmi.height} cm
+BMI: ${formData.bmi.value}
+Category: ${formData.bmi.category}
+` : 'Not provided'}
     `
   };
 

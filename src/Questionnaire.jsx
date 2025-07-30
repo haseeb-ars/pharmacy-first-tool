@@ -26,38 +26,59 @@ const Questionnaire = () => {
       }
     ];
 
+    // Save answer early so it's preserved in all flows
     setAnswers(updatedAnswers);
 
-    // 🚫 Ineligible
+    // 🚫 Ineligible flow
     if (option.eligible === false) {
       return navigate('/ineligible', { state: { note: option.ineligibleNote } });
     }
 
-    // ✅ Special logic for contraception flow
-    if (id === 'contraception' && current === 0) {
-      if (option.eligible === true) {
-        // first or third option → skip second question
+    // ✅ Special flow: Contraception
+    if (id === 'contraception') {
+      if (current === 0) {
+        if (option.eligible === true) {
+          setFormData(prev => ({
+            ...prev,
+            questionnaire: updatedAnswers
+          }));
+          return navigate('/booking');
+        }
+        if (option.eligible === 'followup') {
+          return setCurrent(current + 1); // Move to Q2
+        }
+      } else {
+        // After Q2 of contraception
         setFormData(prev => ({
           ...prev,
           questionnaire: updatedAnswers
         }));
         return navigate('/booking');
       }
+    }
 
-      if (option.eligible === 'followup') {
-        return setCurrent(current + 1); // move to Q2
+    // ✅ Special flow: Weight Loss
+    if (id === 'weightloss') {
+      if (current + 1 < questions.length) {
+        return setCurrent(current + 1);
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          questionnaire: updatedAnswers
+        }));
+        return navigate('/bmi'); // Go to BMI calculator
       }
     }
 
-    // ✅ Continue to next Q if exists
+    // ✅ Standard flow (non-special)
     if (current + 1 < questions.length) {
-      setCurrent(current + 1);
+      return setCurrent(current + 1);
     } else {
       setFormData(prev => ({
         ...prev,
         questionnaire: updatedAnswers
       }));
-      navigate('/booking');
+      return navigate('/booking');
     }
   };
 

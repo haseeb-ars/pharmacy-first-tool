@@ -7,6 +7,14 @@ export const FormDataProvider = ({ children }) => {
     userDetails: {},
     contactDetails: {},
     questionnaire: [],
+    bmi: {
+    weight: '',
+    height: '',
+    value: '',
+    category: ''
+  }
+
+
   });
 
   return (
