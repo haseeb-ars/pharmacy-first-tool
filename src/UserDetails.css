@@ -20,20 +20,20 @@
 
 h2 {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 label {
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 0.25rem;
   display: block;
 }
 
 input {
   width: 100%;
   padding: 0.25rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.25rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
@@ -42,7 +42,7 @@ input {
 .dob-group {
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 .dob-group input {
@@ -54,8 +54,8 @@ input {
 .gender-group {
   display: flex;
   gap: 1rem;
-  margin-bottom: 0.25rem;
-  margin-top: 0.25rem;
+  margin-bottom: 0.15rem;
+  margin-top: 0.15rem;
 }
 
 .gender-group button {
@@ -82,7 +82,7 @@ input {
 
 .continue-btn {
   width: 100%;
-  padding: 1rem;
+  padding: 0.25rem;
   background: #f26621;
   color: white;
   font-size: 1rem;
