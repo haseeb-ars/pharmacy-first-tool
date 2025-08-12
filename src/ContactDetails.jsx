@@ -94,6 +94,12 @@ const ContactDetails = () => {
       </div>
       {errors.phone && <p className="error-text">{errors.phone}</p>}
 
+<p className="consent-text">
+  By agreeing below, you consent to nominate <strong>CarePlus </strong> 
+  as your pharmacy for the purpose of this consultation.
+</p>
+
+
       <button
         className={`continue-btn ${!isValid ? 'disabled' : ''}`}
         onClick={handleContinue}
