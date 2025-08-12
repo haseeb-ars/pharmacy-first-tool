@@ -1,0 +1,75 @@
+.exemption-form {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 550px;
+  margin: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.exemption-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.exemption-header strong {
+  display: block;
+}
+
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.exemption-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exemption-radio,
+.exemption-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+.form-select {
+  padding: 10px 12px; /* more height */
+  font-size: 14px;
+  border: 1px solid #ccc; /* NHS blue */
+  border-radius: 17px; /* rounded corners */
+  background-color: white;
+  line-height: 1.4;
+  appearance: none; /* removes default arrow style */
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%230072ce' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  max-width: 600px;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #004b87; /* darker blue focus */
+  box-shadow: 0 0 0 3px rgba(0, 114, 206, 0.3);
+}
+.form-label{
+    padding-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .exemption-header {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

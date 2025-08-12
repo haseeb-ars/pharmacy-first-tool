@@ -19,6 +19,12 @@ Postcode: ${formData.userDetails.postcode}
 Email: ${formData.contactDetails.email}
 Phone: ${formData.contactDetails.phone}
 
+✅ Consent to Nominate CarePlus:
+${formData.consentGiven ? 'Yes' : 'No'}
+
+💊 Prescription Charge Exemption:
+${formData.prescriptionExemption || 'Not provided'}
+
 📝 Questionnaire Responses:
 ${formData.questionnaire.map((q, i) => {
   const bullets = q.bullets?.length

@@ -31,9 +31,9 @@ label {
 
 input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.25rem;
   margin-top: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
@@ -42,7 +42,7 @@ input {
 .dob-group {
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .dob-group input {
@@ -54,7 +54,7 @@ input {
 .gender-group {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
   margin-top: 0.25rem;
 }
 
@@ -89,7 +89,7 @@ input {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.25rem;
   transition: background 0.3s ease;
 }
 

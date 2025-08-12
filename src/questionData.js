@@ -320,15 +320,7 @@ const questionData = {
   weightloss: {
   header: "Weight Loss Service",
   questions: [
-    {
-      question: "How old are you?",
-      options: [
-        { text: "Under 18", eligible: true },
-        { text: "18 to 74", eligible: true },
-        { text: "75 to 85", eligible: true },
-        { text: "85 or above", eligible: true }
-      ]
-    },
+    
     {
       question: "Have you ever been diagnosed with any of the following?",
       bullets: [

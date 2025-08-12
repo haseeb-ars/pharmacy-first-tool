@@ -104,10 +104,10 @@ const UserDetails = () => {
       <h2>To get started, please provide a few details</h2>
 
       <label>First name</label>
-      <input name="firstName" placeholder="First name" onChange={handleChange} />
+      <input name="firstName" placeholder="First name" onChange={handleChange} style={{ maxWidth: '580px' }}/>
 
       <label>Surname</label>
-      <input name="lastName" placeholder="Last name" onChange={handleChange} />
+      <input name="lastName" placeholder="Last name" onChange={handleChange} style={{ maxWidth: '580px' }} />
       <p className="help-text">This should exactly match how it appears on your GP surgery’s records.</p>
 
       <label>Date of Birth</label>
@@ -140,6 +140,7 @@ const UserDetails = () => {
         placeholder="Postcode"
         onChange={handleChange}
         value={localData.postcode}
+        style={{ maxWidth: '580px' }}
       />
       {postcodeError && <p className="error-text">{postcodeError}</p>}
 

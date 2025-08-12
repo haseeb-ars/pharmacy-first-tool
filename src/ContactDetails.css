@@ -88,8 +88,22 @@ input {
   margin-top: 4px;
 }
 .consent-text {
-  font-size: 0.85rem;
-  color: #555;
-  margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-start; /* keeps text aligned with top of checkbox if it wraps */
+  gap: 8px; /* space between checkbox and text */
+  font-size: 14px;
   line-height: 1.4;
+  cursor: pointer;
 }
+
+.consent-text input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px; /* aligns better vertically with text */
+  accent-color: #0072ce; /* changes checkbox tick color (modern browsers) */
+}
+
+.consent-text strong {
+  font-weight: 600;
+}
+

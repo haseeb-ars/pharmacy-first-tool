@@ -6,15 +6,15 @@ export const FormDataProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     userDetails: {},
     contactDetails: {},
+    consentGiven: true,              // ✅ default checked
+    prescriptionExemption: '',       // ✅ default empty
     questionnaire: [],
     bmi: {
-    weight: '',
-    height: '',
-    value: '',
-    category: ''
-  }
-
-
+      weight: '',
+      height: '',
+      value: '',
+      category: ''
+    }
   });
 
   return (

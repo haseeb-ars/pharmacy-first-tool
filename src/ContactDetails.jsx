@@ -2,44 +2,33 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './ContactDetails.css';
 import { FormDataContext } from './FormDataContext';
+import ExemptionForm from './ExemptionForm';
 
 const ContactDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { setFormData } = useContext(FormDataContext);
 
-  const [form, setForm] = useState({
-    email: '',
-    phone: ''
-  });
+  const [form, setForm] = useState({ email: '', phone: '' });
+  const [errors, setErrors] = useState({ email: '', phone: '' });
 
-  const [errors, setErrors] = useState({
-    email: '',
-    phone: ''
-  });
+  // NEW: track consent + exemption
+  const [consent, setConsent] = useState(true);
+  const [exemption, setExemption] = useState('');
 
-  const validateEmail = (email) => {
-    // Basic email format check
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const validateUKPhone = (phone) => {
-    // Must start with 07 and have 11 digits
-    return /^07\d{9}$/.test(phone);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateUKPhone = (phone) => /^07\d{9}$/.test(phone);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
 
-    // Validate on change
     if (name === 'email') {
       setErrors(prev => ({
         ...prev,
         email: validateEmail(value) ? '' : 'Please enter a valid email address.'
       }));
     }
-
     if (name === 'phone') {
       setErrors(prev => ({
         ...prev,
@@ -49,14 +38,18 @@ const ContactDetails = () => {
   };
 
   const isValid = validateEmail(form.email) && validateUKPhone(form.phone);
+  const canContinue = isValid && !!exemption; // unchanged: must pick an exemption
 
   const handleContinue = () => {
+    // Save into shared form context so the final submit/email step can use it
     setFormData(prev => ({
       ...prev,
       contactDetails: {
         email: form.email,
-        phone: form.phone
-      }
+        phone: form.phone,
+      },
+      consentGiven: consent,             // <— boolean
+      prescriptionExemption: exemption,  // <— string
     }));
 
     navigate(`/condition/${id}/questions`);
@@ -65,20 +58,23 @@ const ContactDetails = () => {
   return (
     <div className="form-wrapper">
       <div className="form-progress">
-        <div className="form-progress-bar2"  />
+        <div className="form-progress-bar2" />
         <p><strong>Step 2 of 3</strong> <span>Contact Details</span></p>
       </div>
 
       <h2>Thanks!<br />Please add your email and phone number</h2>
 
       <label>Email Address</label>
-      <input
-        name="email"
-        placeholder="Enter your email address"
-        value={form.email}
-        onChange={handleChange}
-        type="email"
-      />
+      <div className="phone-group">
+        <span className="flag">✉️</span>
+        <input
+          name="email"
+          placeholder="Enter your email address"
+          value={form.email}
+          onChange={handleChange}
+          type="email"
+        />
+      </div>
       {errors.email && <p className="error-text">{errors.email}</p>}
 
       <label>Telephone Number</label>
@@ -94,16 +90,29 @@ const ContactDetails = () => {
       </div>
       {errors.phone && <p className="error-text">{errors.phone}</p>}
 
-<p className="consent-text">
-  By agreeing below, you consent to nominate <strong>CarePlus </strong> 
-  as your pharmacy for the purpose of this consultation.
-</p>
+
+            {/* Controlled exemption dropdown */}
+      <ExemptionForm value={exemption} onChange={setExemption} />
+
+
+      {/* Controlled consent checkbox */}
+      <label className="consent-text">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+        />
+        <span>
+          I agree to nominate CarePlus as my nominated pharmacy to deliver my medication
+        </span>
+      </label>
 
 
       <button
-        className={`continue-btn ${!isValid ? 'disabled' : ''}`}
+        className={`continue-btn ${!canContinue ? 'disabled' : ''}`}
         onClick={handleContinue}
-        disabled={!isValid}
+        disabled={!canContinue}
+        aria-disabled={!canContinue}
       >
         Agree & Continue
       </button>
