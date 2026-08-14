@@ -9,7 +9,7 @@ import UserDetails from './UserDetails';
 import ContactDetails from './ContactDetails';
 import { FormDataProvider } from './FormDataContext';
 import BMICalculator from './BMICalculator';
-import Footer from './Footer';
+
 
 
 function App() {
@@ -40,7 +40,6 @@ function App() {
             <Route path="/ineligible" element={<Ineligible />} />
             <Route path="/booking" element={<BookingCalendar />} />
           </Routes>
-          <Footer />
         </div>
       </Router>
     </FormDataProvider>

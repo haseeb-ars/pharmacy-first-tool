@@ -14,6 +14,22 @@ const BookingCalendar = () => {
     }
   }, [formData]);
 
+  const isWeightLoss = formData?.condition === 'weightloss';
+
+  if (isWeightLoss) {
+    return (
+      <iframe
+        src="https://booking.tvrx.uk/07804ce4-ed4d-49ee-90c5-c67b692d264d/6a7b2017281645557d51e5c3"
+        style={{
+          width: '100%',
+          height: '100vh',
+          border: 'none',
+        }}
+        title="Weight Loss Booking Calendar"
+      />
+    );
+  }
+
   return (
     <iframe
       src="https://cal.com/pharmacistfirst/pharmacy-first"
@@ -28,3 +44,4 @@ const BookingCalendar = () => {
 };
 
 export default BookingCalendar;
+
